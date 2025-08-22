@@ -1,33 +1,49 @@
-# RockPaperScissors_Project
+# Rock Paper Scissors Project
+
 A beginner-friendly Rock-Paper-Scissors game built using HTML, CSS, and JavaScript. The player selects a move, the computer randomly picks its move, and the result is displayed instantly.
 
-Features:
-. Player vs Computer mode
-. Real-time results: win, lose or draw
-. Randomized computer moves
-. Simple and Responsive UI
-. Score tracking (optional, if implemented)
+---
 
-Technologies used:
-. HTML
-. CSS
-. Java Script
+## Features:
+- Player vs Computer mode  
+- Real-time results: win, lose, or draw  
+- Randomized computer moves  
+- Score tracking  
 
-How to play:
-1. Click Rock, Paper and Scissors.
+---
+
+## Technologies Used:
+- HTML  
+- JavaScript  
+
+---
+
+## How to Play:
+1. Click Rock, Paper, or Scissors.
 2. The computer picks a random move.
 3. The winner is shown immediately.
 
-Screenshot:
+---
 
+## Screenshot
+![Game Screenshot](images/screenshot.png)
 
-Folder Structure:
+---
+
+## Folder Structure:
 /
+├── README.md
+├── images/
+│ └── screenshot.png
 ├── index.html
-├── style.css
 └── script.js
 
-Psuedocode:
+---
+
+## Pseudocode:
+```text
+SET playerScore = 0
+SET computerScore = 0
 
 FUNCTION getComputerChoice
     SET choices = ["rock", "paper", "scissors"]
@@ -37,66 +53,44 @@ FUNCTION getHumanChoice
     PROMPT player to enter "rock", "paper", or "scissors"
     RETURN player's choice
 
-FFUNCTION playRound(humanChoice, computerChoice)
-    CONVERT humanChoice and computerChoice to lowercase
+FUNCTION capitalize
+    RETURN word with the first letter capitalized
 
+FUNCTION playRound(humanChoice, computerChoice)
     IF humanChoice == computerChoice THEN
         DISPLAY "It's a draw! You both chose [humanChoice]"
         RETURN "draw"
-
-    ELSE IF (humanChoice == "rock" AND computerChoice == "scissors") THEN
-        DISPLAY "You win! Rock beats Scissors"
+    ELSE IF (human beats computer) THEN
+        DISPLAY "You win! [humanChoice] beats [computerChoice]"
         RETURN "human"
-
-    ELSE IF (humanChoice == "paper" AND computerChoice == "rock") THEN
-        DISPLAY "You win! Paper beats Rock"
-        RETURN "human"
-
-    ELSE IF (humanChoice == "scissors" AND computerChoice == "paper") THEN
-        DISPLAY "You win! Scissors beats Paper"
-        RETURN "human"
-
     ELSE
-        DISPLAY "You lose! [computerChoice capitalized] beats [humanChoice capitalized]"
+        DISPLAY "You lose! [computerChoice] beats [humanChoice]"
         RETURN "computer"
 
 FUNCTION playGame
-    SET playerScore = 0
-    SET computerScore = 0
     SET totalRounds = 5
-
     FOR round = 1 TO totalRounds DO
-        CALL getHumanChoice → store as humanChoice
-        CALL getComputerChoice → store as computerChoice
+        CALL getHumanChoice → humanChoice
+        CALL getComputerChoice → computerChoice
+        CALL playRound(humanChoice, computerChoice) → roundResult
 
-        CALL playRound(humanChoice, computerChoice) → store as roundResult
-
-        IF roundResult == "human"
+        IF roundResult == "human" THEN
             INCREMENT playerScore
             DISPLAY "You win this round!"
-
-        ELSE IF roundResult == "computer"
+        ELSE IF roundResult == "computer" THEN
             INCREMENT computerScore
             DISPLAY "Computer wins this round!"
-
         ELSE
             DISPLAY "This round is a draw."
 
         DISPLAY current score: "You: [playerScore] | Computer: [computerScore]"
-
     END FOR
 
     DISPLAY "Final Score - You: [playerScore], Computer: [computerScore]"
 
-    IF playerScore > computerScore
+    IF playerScore > computerScore THEN
         DISPLAY "🎉 You won the game!"
-
-    ELSE IF playerScore < computerScore
+    ELSE IF playerScore < computerScore THEN
         DISPLAY "😞 Computer won the game!"
-
     ELSE
         DISPLAY "🤝 The game is a draw!"
-
-END FUNCTION
-
-

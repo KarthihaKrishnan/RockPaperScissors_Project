@@ -1,4 +1,4 @@
-console.log("Hellow World!"); //script check
+// console.log("Hellow World!"); //script check
 
 /*  Declare the players score variables */
 let humanScore = 0;
@@ -43,21 +43,34 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-/* Play one round */
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+/* Play the entire game */
+function playGame() {
+const totalRounds = 5;
+    for (let round = 1; round <= totalRounds; round++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        let roundResult = playRound(humanSelection, computerSelection);
 
-let roundResult = playRound(humanSelection, computerSelection);
+        if (roundResult === "human") {
+            humanScore++;
+            console.log(`You win this round!`);
+        }else if (roundResult === "computer") {
+            computerScore++;
+            console.log(`Computer wins this round!`);
+        }else {
+            console.log(`This round is a draw`);
+        }
 
-if (roundResult === "human") {
-    humanScore++;
-    console.log(`You win this round!`);
-}else if (roundResult === "computer") {
-    computerScore++;
-    console.log(`Computer win this round!`);
-}else {
-    console.log(`This round is a draw`);
+        console.log(`Score: You - ${humanScore}, Computer - ${computerScore}`);
+    }
+    console.log(`Final Score: You - ${humanScore}, Computer - ${computerScore}`);
+    if (humanScore > computerScore) {
+        console.log("🎉 You won the game!");
+    }else if (humanScore < computerScore) {
+        console.log("😞 Computer won the game!");
+    }else {
+        console.log("🤝 The game is a draw!");
+    }
 }
 
-console.log(`Score: You - ${humanScore}, Computer - ${computerScore}`);
-
+playGame();
