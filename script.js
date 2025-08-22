@@ -1,5 +1,9 @@
 console.log("Hellow World!"); //script check
 
+//Declare the players score variables
+let humanScore = 0;
+let computerScore = 0;
+
 // Write the logic to get computer choice
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
