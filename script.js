@@ -1,20 +1,63 @@
 console.log("Hellow World!"); //script check
 
-//Declare the players score variables
+/*  Declare the players score variables */
 let humanScore = 0;
 let computerScore = 0;
 
-// Write the logic to get computer choice
+/* Get computer choice */
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
-console.log(getComputerChoice());
+//console.log(getComputerChoice());
 
-//Write the logic to get human choice
+/* Get human choice */
 function getHumanChoice() {
     const input = prompt("Enter Rock, Paper, and Scissors:");
     return input.trim().toLowerCase(); //Case-insensitive
 }
-console.log(getHumanChoice());
+//console.log(getHumanChoice());
+
+/* Capitalize first letter for nice output */
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+/* Play a single round */
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    console.log(`It's a draw! You both chose ${capitalize(humanChoice)}.`);
+    return "draw";
+  }else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+   ) {
+    console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`);
+    return "human";
+  }
+  else {
+    console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`);
+    return "computer";
+  }
+}
+
+/* Play one round */
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+let roundResult = playRound(humanSelection, computerSelection);
+
+if (roundResult === "human") {
+    humanScore++;
+    console.log(`You win this round!`);
+}else if (roundResult === "computer") {
+    computerScore++;
+    console.log(`Computer win this round!`);
+}else {
+    console.log(`This round is a draw`);
+}
+
+console.log(`Score: You - ${humanScore}, Computer - ${computerScore}`);
+
